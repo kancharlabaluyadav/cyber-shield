@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review queue - CyberShield AI Admin</title>
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/product.css?v=4">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/static/index.html" class="nav-logo">
+                <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="logo-text">CyberShield <span>AI</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/static/index.html" class="nav-link"><i class="fa-solid fa-flask"></i> AI Sandbox</a></li>
+                <li><a href="/static/feed.html" class="nav-link"><i class="fa-solid fa-comments"></i> Community feed</a></li>
+                <li><a href="/static/dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="/static/moderation.html" class="nav-link active"><i class="fa-solid fa-list-check"></i> Review queue</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-wrapper">
+        
+        <header class="hero-header">
+            <h1 class="hero-title">Content Review queue</h1>
+            <p class="hero-subtitle">Review flagged comments, verify NLP predictions, and take enforcement actions.</p>
+        </header>
+
+        <!-- Filter & Search Bar -->
+        <div class="filter-bar">
+            <div class="tabs-group" id="statusTabs">
+                <button class="tab-btn active" data-status="ALL">All</button>
+                <button class="tab-btn" data-status="FLAGGED">Flagged</button>
+                <button class="tab-btn" data-status="PENDING_REVIEW">Pending</button>
+                <button class="tab-btn" data-status="UNDER_REVIEW">Under Review</button>
+                <button class="tab-btn" data-status="APPROVED">Approved</button>
+                <button class="tab-btn" data-status="REMOVED">Removed</button>
+            </div>
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="queueSearch" class="search-input" placeholder="Search ID, text, username...">
+            </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="glass-card table-container">
+            <table class="mod-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Comment Text</th>
+                        <th>Category</th>
+                        <th>Confidence</th>
+                        <th>Risk</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="queueTableBody">
+                    <!-- Dynamic Table Rows -->
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                            <i class="fa-solid fa-spinner fa-spin" style="font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>
+                            Loading moderation queue...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <!-- View Comment Detail Modal -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-card" style="max-width: 600px;">
+            <div class="modal-header">
+                <div class="logo-icon" style="background: var(--primary-glow);"><i class="fa-solid fa-file-lines"></i></div>
+                <div>
+                    <div class="modal-title">Comment Detail Inspection</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);" id="detailCommentId">CMT-1001</div>
+                </div>
+            </div>
+
+            <div style="background: var(--bg-input); border: 1px solid var(--border-color); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.25rem;">
+                <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.25rem;">COMMENT TEXT</div>
+                <div style="font-size: 1rem; color: var(--text-primary); line-height: 1.5;" id="detailText">Sample text...</div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+                <div style="background: var(--bg-input); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">PREDICTED CATEGORY</div>
+                    <div id="detailCategory" style="margin-top: 0.35rem;">-</div>
+                </div>
+                <div style="background: var(--bg-input); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">CONFIDENCE & RISK</div>
+                    <div style="font-weight: 700; font-size: 0.95rem; margin-top: 0.35rem; color: var(--accent-blue);" id="detailRiskConf">-</div>
+                </div>
+            </div>
+
+            <div class="reason-box" style="margin-bottom: 1.5rem;">
+                <div class="reason-title"><i class="fa-solid fa-brain"></i> AI Explanation</div>
+                <div class="reason-text" id="detailExplanation">Explanation text...</div>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                <button class="btn btn-secondary" id="btnDetailClose">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 CyberShield AI â€” Content Moderation Enforcement Hub.</p>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="js/moderation.js?v=2"></script>
+</body>
+</html>

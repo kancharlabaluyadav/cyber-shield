@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Feed - CyberShield AI Moderation Demo</title>
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/product.css?v=4">
+    <style>
+        .feed-post-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            margin-bottom: 2rem;
+        }
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+        .post-author {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .post-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .post-content {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+        .comments-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+        .comment-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            background: var(--bg-input);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .comment-body {
+            flex: 1;
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.35rem;
+        }
+        .comment-user {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+        .comment-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+        .comment-footer-actions {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .action-link {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .action-link:hover {
+            color: var(--accent-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/static/index.html" class="nav-logo">
+                <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="logo-text">CyberShield <span>AI</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/static/index.html" class="nav-link"><i class="fa-solid fa-flask"></i> AI Sandbox</a></li>
+                <li><a href="/static/feed.html" class="nav-link active"><i class="fa-solid fa-comments"></i> Community feed</a></li>
+                <li><a href="/static/dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="/static/moderation.html" class="nav-link"><i class="fa-solid fa-list-check"></i> Review queue</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-wrapper" style="max-width: 850px;">
+        
+        <header class="hero-header">
+            <h1 class="hero-title">Mock Social Media Post</h1>
+            <p class="hero-subtitle">Test how AI moderation intervenes before abusive comments appear on a user feed.</p>
+        </header>
+
+        <!-- Post Card -->
+        <article class="feed-post-card">
+            <div class="post-header">
+                <div class="avatar">JD</div>
+                <div>
+                    <div class="post-author">Jane_Developer</div>
+                    <div class="post-time">Posted 2 hours ago</div>
+                </div>
+            </div>
+            <div class="post-content">
+                ðŸš€ Just launched our new open-source AI content moderation engine! It analyzes toxicity, cyberbullying, hate speech, and threats in real-time. Feedback and thoughts are welcomed!
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <h3 style="font-size: 1.1rem; margin-bottom: 1.25rem; font-weight: 700;">Comments (<span id="commentCount">3</span>)</h3>
+                
+                <div id="commentsContainer">
+                    <!-- Sample Initial Comments -->
+                    <div class="comment-item">
+                        <div class="avatar" style="background: #10b981;">AS</div>
+                        <div class="comment-body">
+                            <div class="comment-header">
+                                <span class="comment-user">Alex_Smith</span>
+                                <span class="badge badge-NON_ABUSIVE"><i class="fa-solid fa-check"></i> Safe</span>
+                            </div>
+                            <div class="comment-text">This is fantastic news Jane! Excited to integrate this API into our application.</div>
+                            <div class="comment-footer-actions">
+                                <span class="action-link"><i class="fa-regular fa-thumbs-up"></i> 14 Likes</span>
+                                <span class="action-link"><i class="fa-regular fa-comment"></i> Reply</span>
+                                <span>2h ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="avatar" style="background: #f97316;">T99</div>
+                        <div class="comment-body">
+                            <div class="comment-header">
+                                <span class="comment-user">Troll99</span>
+                                <span class="badge badge-TOXIC"><i class="fa-solid fa-triangle-exclamation"></i> Toxic</span>
+                            </div>
+                            <div class="comment-text">You are an absolute idiot and your code looks like trash.</div>
+                            <div class="comment-footer-actions">
+                                <span class="action-link"><i class="fa-regular fa-thumbs-up"></i> 0 Likes</span>
+                                <span class="action-link"><i class="fa-regular fa-comment"></i> Reply</span>
+                                <span>1h ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-item" style="opacity: 0.7;">
+                        <div class="avatar" style="background: #ef4444;">AX</div>
+                        <div class="comment-body">
+                            <div class="comment-header">
+                                <span class="comment-user">Anon_X</span>
+                                <span class="badge badge-SEVERE_BULLYING"><i class="fa-solid fa-ban"></i> Flagged for Review</span>
+                            </div>
+                            <div class="comment-text" style="font-style: italic; color: #ef4444;">[This comment was flagged by AI Moderation and is awaiting moderator approval]</div>
+                            <div class="comment-footer-actions">
+                                <span>Held in queue</span>
+                                <span>30m ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment Input -->
+                <div style="margin-top: 1.5rem; background: var(--bg-card); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
+                    <div style="font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">Write a comment</div>
+                    <textarea id="feedCommentInput" class="comment-textarea" style="min-height: 90px;" placeholder="Add a comment to this post..."></textarea>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem;">
+                        <span id="feedCharCounter" style="font-size: 0.8rem; color: var(--text-muted);">0 / 500</span>
+                        <button class="btn btn-primary" id="btnSubmitFeedComment"><i class="fa-solid fa-paper-plane"></i> Post Comment</button>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Interactive Flag Pre-Publish Modal -->
+    <div class="modal-overlay" id="moderationModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(239,68,68,0.2); display: flex; align-items: center; justify-content: center; color: #ef4444; font-size: 1.25rem;">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <div class="modal-title" style="color: #ef4444;">Community Guidelines Alert</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);" id="modalCategorySub">Flagged by AI Content Moderation</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 1.25rem; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;" id="modalMessage">
+                This comment contains language that violates our community standards.
+            </div>
+
+            <!-- Details Block -->
+            <div style="background: var(--bg-input); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">DETECTED CATEGORY</span>
+                    <span class="badge badge-BULLYING" id="modalBadge">BULLYING</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">CONFIDENCE SCORE</span>
+                    <span style="font-weight: 700; color: var(--accent-blue);" id="modalConfidence">94.2%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">RISK SCORE</span>
+                    <span style="font-weight: 700; color: #ef4444;" id="modalRisk">82 / 100</span>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+                <button class="btn btn-secondary" id="btnModalEdit" style="width: 100%; justify-content: center;"><i class="fa-solid fa-pen-to-square"></i> Edit Comment</button>
+                <button class="btn btn-danger" id="btnModalSubmitReview" style="width: 100%; justify-content: center;"><i class="fa-solid fa-flag"></i> Submit for Review</button>
+                <button class="btn" id="btnModalCancel" style="width: 100%; justify-content: center; background: transparent; color: var(--text-muted);"><i class="fa-solid fa-xmark"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- App JS -->
+    <script src="js/feed.js?v=2"></script>
+</body>
+</html>

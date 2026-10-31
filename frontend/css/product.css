@@ -1,0 +1,87 @@
+/* A quieter, more familiar product interface shared across the demo. */
+:root {
+    --bg-main: #f5f6f8;
+    --bg-card: #ffffff;
+    --bg-card-hover: #fbfcfd;
+    --bg-input: #f8f9fb;
+    --border-color: #e4e7ec;
+    --border-highlight: #cfd5dd;
+    --text-primary: #202733;
+    --text-secondary: #596474;
+    --text-muted: #7b8491;
+    --primary-glow: #426b58;
+    --primary-hover: #315542;
+    --accent-blue: #426b58;
+    --cat-non-abusive: #347858;
+    --font-heading: 'Inter', sans-serif;
+    --shadow-sm: 0 2px 8px rgba(30, 41, 59, .045);
+    --radius-lg: 14px;
+    --radius-md: 10px;
+    --radius-sm: 7px;
+}
+
+body { background: #f5f6f8; color: var(--text-primary); }
+.navbar { padding: .8rem 1.5rem; background: rgba(255,255,255,.96); border-bottom-color: #e6e8eb; backdrop-filter: blur(10px); }
+.nav-container { max-width: 1240px; }
+.logo-icon { width: 36px; height: 36px; border-radius: 9px; background: #426b58; box-shadow: none; font-size: 1rem; }
+.logo-text { font-size: 1.12rem; font-weight: 700; letter-spacing: -.35px; }
+.logo-text span { color: #748579; }
+.nav-links { gap: .2rem; }
+.nav-link { padding: .55rem .8rem; color: #626c78; font-size: .88rem; border-radius: 7px; }
+.nav-link:hover, .nav-link.active { color: #263b30; background: #f0f4f1; }
+.nav-link.active { border-bottom: 0; }
+.main-wrapper { max-width: 1180px; margin: 2.3rem auto; }
+.hero-header { text-align: left; margin-bottom: 1.65rem; }
+.hero-title { background: none; color: #202733; -webkit-text-fill-color: currentColor; font-size: 1.85rem; font-weight: 700; letter-spacing: -.6px; margin-bottom: .45rem; }
+.hero-subtitle { margin: 0; max-width: 760px; color: #697382; font-size: .98rem; line-height: 1.55; }
+.glass-card, .feed-post-card, .stat-card, .chart-card { background: #fff; border-color: #e5e8ec; border-radius: 12px; box-shadow: var(--shadow-sm); }
+.glass-card { padding: 1.5rem; }
+.glass-card:hover, .stat-card:hover { border-color: #d6dce2; transform: none; }
+.grid-2 { gap: 1.15rem; }
+.section-title { font-size: 1.05rem; font-weight: 650; }
+.comment-textarea, .search-input { background: #fbfcfd; border-color: #dfe3e8; color: #26303b; }
+.comment-textarea::placeholder, .search-input::placeholder { color: #9aa2ad; }
+.comment-textarea:focus, .search-input:focus { border-color: #73917e; box-shadow: 0 0 0 3px rgba(66,107,88,.1); }
+.btn { border-radius: 8px; font-weight: 600; box-shadow: none; }
+.btn-primary { background: #426b58; }
+.btn-primary:hover { background: #315542; transform: none; box-shadow: none; }
+.btn-secondary { background: #fff; color: #394451; border: 1px solid #d9dee4; }
+.btn-secondary:hover { background: #f5f7f8; }
+.result-header { border-bottom-color: #eceef1; }
+.metric-card { background: #fafbfc; border-color: #e8ebef; }
+.metric-label { letter-spacing: .025em; }
+.reason-box { background: #f6f8f7; border-left: 3px solid #73917e; }
+.reason-title { color: #426b58; }
+.action-recommendation { background: #fafbfc; border-color: #e7eaee; }
+.badge-UNCERTAIN { background: #f3f4f6; color: #596474; border: 1px solid #cfd5dd; }
+.footer { border-top-color: #e6e8eb; color: #858d98; margin-top: 2rem; }
+.tabs-group { background: #f5f6f8; border-color: #e5e8ec; }
+.tab-btn.active { background: #fff; color: #28342d; box-shadow: 0 1px 3px rgba(20,30,40,.1); }
+.mod-table th { background: #f7f8fa; color: #687381; }
+.mod-table td { color: #586372; }
+.mod-table th, .mod-table td { border-bottom-color: #eceef1; }
+.mod-table tr:hover { background: #fafbfc; }
+.table-container { padding: 0; }
+.comment-item { background: #fafbfc; border-color: #e8ebef; }
+.post-content { color: #414b58; }
+.avatar { background: #e7eee9; color: #426b58; }
+.modal-overlay { background: rgba(31, 39, 48, .45); }
+.modal-card { background: #fff; border-color: #e1e5e9; box-shadow: 0 18px 50px rgba(25,35,45,.18); }
+@media (max-width: 768px) {
+    .navbar { padding: .75rem 1rem; }
+    .nav-links { gap: .15rem; }
+    .nav-link { padding: .45rem .55rem; font-size: .8rem; }
+    .main-wrapper { margin: 1.5rem auto; padding: 0 1rem; }
+    .hero-header { text-align: left; }
+    .hero-title { font-size: 1.55rem; }
+    .glass-card { padding: 1.15rem; }
+    .action-bar { flex-wrap: wrap; }
+}
+@media (min-width: 769px) and (max-width: 1100px) {
+    .navbar { padding-inline: 1rem; }
+    .nav-container { gap: .7rem; }
+    .nav-links { gap: 0; }
+    .nav-link { padding: .48rem .52rem; font-size: .8rem; white-space: nowrap; }
+    .nav-link i { display: none; }
+    .logo-text { font-size: 1rem; }
+}

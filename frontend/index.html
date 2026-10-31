@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sandbox - CyberShield AI</title>
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/product.css?v=4">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/static/index.html" class="nav-logo">
+                <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="logo-text">CyberShield <span>AI</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/static/index.html" class="nav-link active"><i class="fa-solid fa-flask"></i> AI Sandbox</a></li>
+                <li><a href="/static/feed.html" class="nav-link"><i class="fa-solid fa-comments"></i> Community feed</a></li>
+                <li><a href="/static/dashboard.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="/static/moderation.html" class="nav-link"><i class="fa-solid fa-list-check"></i> Review queue</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-wrapper">
+        
+        <header class="hero-header">
+            <h1 class="hero-title">AI Sandbox</h1>
+            <p class="hero-subtitle">Try the comment moderation model, review its prediction, and see the signals behind the result.</p>
+        </header>
+
+        <!-- Grid Layout -->
+        <div class="grid-2">
+            
+            <!-- Input Card -->
+            <section class="glass-card">
+                <div class="input-header">
+                    <h2 class="section-title"><i class="fa-regular fa-pen-to-square"></i> Test a comment</h2>
+                    <span class="char-counter" id="charCounter">0 / 500 characters</span>
+                </div>
+                
+                <textarea 
+                    id="commentText" 
+                    class="comment-textarea" 
+                    placeholder="Write or paste a comment to check…"
+                    maxlength="500"
+                ></textarea>
+
+                <div class="live-status" id="liveStatusContainer" style="display: none;">
+                    <div class="pulse-dot"></div>
+                    <span id="liveStatusText">Analyzing keystrokes...</span>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-secondary" id="btnAnalyze"><i class="fa-solid fa-magnifying-glass"></i> Check comment</button>
+                    <button class="btn btn-primary" id="btnPost"><i class="fa-solid fa-paper-plane"></i> Submit comment</button>
+                </div>
+            </section>
+
+            <!-- Results Card -->
+            <section class="glass-card" id="resultCard">
+                <div class="result-header">
+                    <h2 class="section-title"><i class="fa-solid fa-sliders"></i> Moderation result</h2>
+                    <div id="categoryBadge" class="badge">
+                        <i class="fa-regular fa-hourglass"></i> Awaiting comment
+                    </div>
+                </div>
+
+                <!-- Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Confidence</div>
+                        <div class="metric-value" id="confidenceValue">—</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Risk Score</div>
+                        <div class="metric-value" id="riskValue">—</div>
+                        <div class="risk-meter-container">
+                            <div class="risk-meter-bar" id="riskBar" style="width: 0%; background-color: #9aa2ad;"></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Severity Level</div>
+                        <div class="metric-value">
+                            <span class="severity-pill" id="severityPill">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explainable AI Box -->
+                <div class="reason-box">
+                    <div class="reason-title"><i class="fa-regular fa-message"></i> What we noticed</div>
+                    <div class="reason-text" id="explanationText">
+                        Add a comment and choose Check comment to see the moderation result.
+                    </div>
+                </div>
+
+                <!-- Recommended Action -->
+                <div class="action-recommendation" id="recommendationBox">
+                    <div class="recommend-icon" id="recommendIcon" style="color: #10b981;"><i class="fa-solid fa-shield-check"></i></div>
+                    <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Suggested next step</div>
+                            <div style="font-weight: 650; font-size: 1rem; color: var(--text-primary);" id="recommendText">Waiting for a comment</div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 CyberShield AI â€” Next-Gen Social Media Moderation & Abuse Prevention Platform.</p>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="js/app.js?v=2"></script>
+</body>
+</html>
